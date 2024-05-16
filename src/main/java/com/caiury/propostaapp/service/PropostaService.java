@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class PropostaService {
 
@@ -24,5 +26,10 @@ public class PropostaService {
         repository.save(proposta);
 
         return PropostaMapper.INSTANCE.propostaToConvertConvertDto(proposta);
+    }
+
+    public List<PropostaResponseDto> buscarTodas() {
+
+        return PropostaMapper.INSTANCE.propostaListToCovertDto(repository.findAll());
     }
 }
